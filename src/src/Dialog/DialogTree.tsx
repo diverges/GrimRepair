@@ -1,42 +1,73 @@
 import React from 'react';
 import Dialog from './Dialog';
+import ChatBubble from './ChatBubble';
 
 interface IResponse {
     text: string,
-    next: IDialogTreeProps | (() => void),
+    next: IDialogTree | (() => void),
 }
 
-interface IDialogTreeProps {
+interface IDialogTree {
     speaker: string,
     dialog: string,
     responses: IResponse[],
 }
 
-export default class DialogTree extends React.Component<IDialogTreeProps, IDialogTreeProps> {
+interface IHistoricDialog {
+    speaker: string,
+    dialog: string,
+    fromPlayer: boolean,
+}
+
+interface IDialogTreeProps {
+    playerSpeaker: string,
+    root: IDialogTree,
+}
+
+interface IState {
+    currentDialog: IDialogTree,
+    dialogHistory: IHistoricDialog[],
+}
+
+export default class DialogTree extends React.Component<IDialogTreeProps, IState> {
     constructor(props: IDialogTreeProps) {
         super(props);
         
-        this.state = props;
+        this.state = {
+            currentDialog: props.root,
+            dialogHistory: [],
+        };
     }
 
     render() {
         return (
-            <Dialog
-                speaker={this.state.speaker}
-                dialog={this.state.dialog}
-                responses={this.state.responses.map(response => response.text)}
-                selectResponse={(i) => this.onResponseSelection(i)} />
+            <div className="DialogBox">
+                {this.state.dialogHistory.map(history => 
+                    <ChatBubble {...history} />
+                )}
+                <Dialog
+                    speaker={this.state.currentDialog.speaker}
+                    dialog={this.state.currentDialog.dialog}
+                    responses={this.state.currentDialog.responses.map(response => response.text)}
+                    selectResponse={(i) => this.onResponseSelection(i)} />
+            </div>
         )
     }
 
     onResponseSelection(index: number) {
-        let response = this.state.responses[index];
+        let response = this.state.currentDialog.responses[index];
         
         if (typeof(response.next) === 'function') {
             response.next();
         }
         else {
-            this.setState(response.next);
+            this.setState({
+                currentDialog: response.next,
+                dialogHistory: this.state.dialogHistory.concat(
+                    { speaker: this.state.currentDialog.speaker, dialog: this.state.currentDialog.dialog, fromPlayer: false, },
+                    { speaker: this.props.playerSpeaker, dialog: response.text, fromPlayer: true },
+                )
+            });
         }
     }
 }

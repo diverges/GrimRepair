@@ -1,46 +1,50 @@
-.DialogBox {
+.ChatBubbleContainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.ChatBubbleContainer-Player {
+    flex-direction: row-reverse;
+}
+
+.ChatBubble {
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: left;
     background-color: blanchedalmond;
-    position: relative;
-    margin: 10%;
-    width: auto;
     border-radius: 10px;
     box-shadow: 10px 10px 10px grey;
-    text-align: left;
-    padding-bottom: 1em;
 }
 
-.Speaker {
-    position: relative;
-    top: -1.5em;
-    left: 1em;
-    margin-bottom: -1.5em;
-    display: inline-block;
-    background-color: blanchedalmond;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    border-radius: 10px;
+.ChatBubble-Player {
+    text-align: right;
+    background-color: blue;
 }
 
-.Dialog {
-    width: 90%;
-    margin: auto;
+.DialogBox {
+    margin: 10%;
+    width: auto;
 }
 
 .ResponseOptions {
-    width: 80%;
-    padding: 0.5em;
-    margin: auto;
-    text-align: left;
+    display: flex;
+    justify-content: center;
 }
 
-.ResponseOptions ul {
-    list-style-type: none;
+.Response {
+    margin: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px grey;
+    transition-property: opacity;
+    transition-duration: 200ms;
+    background-color: blue;
+    opacity: 80%;
 }
 
-.ResponseOption {
-    transition-property: background-color;
-    border-radius: 5px;
-    padding: 0.25em;
+.Response:hover {
+    opacity: 100%;
 }
 
 .ResponseOption:hover {

@@ -22,10 +22,11 @@ let dialogTree = {
   ],
 }
 
+
 const App = () => {
   return (
     <div className="App">
-      <DialogTree {...dialogTree}/>
+      <DialogTree root={dialogTree} playerSpeaker="Player" />
     </div>
   );
 }

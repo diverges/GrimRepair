@@ -1,5 +1,7 @@
 import React from 'react';
 import './Dialog.css';
+import ChatBubble from './ChatBubble';
+import ResponseOptions from './ResponseOptions';
 
 interface IDialogProps {
     speaker: string,
@@ -10,20 +12,10 @@ interface IDialogProps {
 
 const Dialog = (props : IDialogProps) => {
     return (
-        <div className="DialogBox">
-            <h1 className="Speaker">{props.speaker}</h1>
-            <div className="Dialog">
-                <p>{props.dialog}</p>
-            </div>
+        <div>
+            <ChatBubble {...props} fromPlayer={false} />
             {props.responses && props.responses.length > 0 &&
-                <div className="ResponseOptions">
-                    <ul>
-                        {props.responses.map((response, i) => 
-                            <li className="ResponseOption" onClick={() => props.selectResponse(i)}>
-                                {response}
-                            </li>)}
-                    </ul>
-                </div>
+                <ResponseOptions responses={props.responses} selectResponse={props.selectResponse} />
             }
         </div>
     )
