@@ -32,6 +32,10 @@ code {
   font-weight: bold;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .align-middle {
   display: table-cell;
   vertical-align: middle;
