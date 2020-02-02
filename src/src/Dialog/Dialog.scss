@@ -31,22 +31,25 @@
     padding-left: 1em;
     padding-right: 1em;
     animation: 500ms slideIn ease;
+    
+    border-width: 2em;
+    border-style: solid;
+    border-image-slice: 3 fill;
+    border-image-repeat: stretch;
 }
 
 .chat-bubble-npc {
     @extend %chat-bubble;
 
     text-align: left;
-    background-color: blanchedalmond;
-    box-shadow: -10px 10px grey;
+    border-image-source: url('/chat_left.svg');
 }
 
 .chat-bubble-player {
     @extend %chat-bubble;
 
     text-align: right;
-    background-color: blue;
-    box-shadow: 10px 10px grey;
+    border-image-source: url('/chat_right.svg');
 }
 
 .chat-container {
