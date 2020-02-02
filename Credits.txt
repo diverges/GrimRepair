@@ -1,8 +1,19 @@
 # Hackathon Team
 <todo>
 
+# Music
+Life_Like_Thunder - https://freemusicarchive.org/music/Life_Like_Thunderstorms
+
 # Sounds
+bells_ambient.wav - By klankbeeld, This work is licensed under the Attribution License, https://freesound.org/people/klankbeeld/sounds/504539/
+door_open.wave - By InspectorJ, This work is licensed under the Attribution License, https://freesound.org/people/InspectorJ/sounds/431117/
 door_close.wav - By InspectorJ, This work is licensed under the Attribution License, https://freesound.org/people/InspectorJ/sounds/411791/
 gootsteps_concrete.wav - By InspectorJ, This work is licensed under the Attribution License, https://freesound.org/people/InspectorJ/sounds/336598/
+phone_cord_1.wav - By jack_urbanski, https://freesound.org/people/jack_urbanski/sounds/495674/
+phone_cord_2.wav - This work is licensed under the Attribution License, https://notificationsounds.com/notification-sounds/clearly-602
+phone_cord_3.wav - This work is licensed under the Attribution License, https://notificationsounds.com/notification-sounds/deduction-588
+glass_break.wav - By InspectorJ, This work is licensed under the Attribution License, https://freesound.org/people/InspectorJ/sounds/344269/
+fire_place.wav - By Leosalom, This work is licensed under the Attribution License, https://freesound.org/people/leosalom/sounds/234288/
+scream_1 - By TheSubber13, This work is licensed under the Attribution License, 
 
 # Images
