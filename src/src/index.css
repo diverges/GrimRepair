@@ -28,6 +28,10 @@ code {
   margin: auto;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .align-middle {
   display: table-cell;
   vertical-align: middle;

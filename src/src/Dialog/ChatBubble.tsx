@@ -1,21 +1,25 @@
 import React from 'react';
 import './Dialog.scss';
+import { AudioPlayer } from '../Audio/GameAudio';
 
 interface IDialogProps {
-    speaker: string,
+    speaker?: string,
+    className?: string,
     text: string,
     fromPlayer: boolean,
 }
 
-const ChatBubble = (props : IDialogProps) => {
+const ChatBubble = (props: IDialogProps) => {
+    AudioPlayer.play('PHONE_CORD_2');
     return (
         <div className={props.fromPlayer ? 'chat-bubble-container-player' : 'chat-bubble-container-npc'}>
             <div className={props.fromPlayer ? 'chat-bubble-player' : 'chat-bubble-npc'}>
-                <div>
+                {props.speaker && <div>
                     <h2>{props.speaker}</h2>
                 </div>
+                }
                 <div>
-                    <p>{props.text}</p>
+                    <p className={props.className}>{props.text}</p>
                 </div>
             </div>
         </div>
