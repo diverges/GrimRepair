@@ -4,6 +4,7 @@ import './App.css';
 import DialogTree from './Dialog/DialogTree';
 import { AudioPlayer } from 'Audio';
 import { AudioAssets } from 'Shared';
+import { PrologueScene } from 'Scenes';
 
 let dialogTree = {
   speaker: "Grim Repear",
@@ -37,13 +38,21 @@ const loadingStyle: React.CSSProperties = {
   width: '100%'
 }
 
+enum SceneState {
+  START,
+  PROLOGUE,
+  END
+}
+
 interface IAppState {
   isLoading: boolean;
+  sceneState: SceneState
 }
 
 class App extends React.PureComponent<{}, IAppState> {
   private rootRef = React.createRef<HTMLDivElement>();
   public state = {
+    sceneState: SceneState.START,
     isLoading: true
   };
 
@@ -59,16 +68,21 @@ class App extends React.PureComponent<{}, IAppState> {
   }
 
   render() {
-    if (!this.state.isLoading) {
-      AudioPlayer.play('LIFE_LIKE_THUNDERSTORM')
-    };
-
     return (
       <div ref={this.rootRef} className="App">
         {this.state.isLoading && <div style={loadingStyle}><span className='align-middle'>Loading</span></div>}
-        <DialogTree root={dialogTree} playerSpeaker="Player" />
+        {!this.state.isLoading && (
+          this.getCurrentScene()
+        )}
+        {/* <DialogTree root={dialogTree} playerSpeaker="Player" /> */}
       </div>
     );
+  }
+
+  getCurrentScene(): JSX.Element {
+    switch (this.state.sceneState) {
+      default: return <PrologueScene />
+    }
   }
 }
 
