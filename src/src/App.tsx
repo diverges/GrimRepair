@@ -104,11 +104,15 @@ class App extends React.PureComponent<{}, IAppState> {
 
   getCurrentScene(): JSX.Element {
     switch (this.state.sceneState) {
+      case SceneState.END:
+        return (<div style={loadingStyle}><span className='align-middle'>End.</span></div>);
       case SceneState.START:
         return (<div style={loadingStyle}><span className='align-middle' onClick={() => this.setState({
           sceneState: SceneState.PROLOGUE
         })}>Start</span></div>);
-      default: return <PrologueScene />
+      default: return <PrologueScene onSceneEnd={() => this.setState({
+        sceneState: SceneState.END
+      })} />
     }
   }
 }

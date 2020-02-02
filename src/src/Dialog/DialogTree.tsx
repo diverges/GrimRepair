@@ -3,7 +3,7 @@ import ChatBubble from './ChatBubble';
 import ResponseOptions from './ResponseOptions';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
-interface IDialog {
+export interface IDialog {
     speaker?: string,
     className?: string,
     text: string,
@@ -14,7 +14,7 @@ interface IResponse extends IDialog {
     next: IDialogTree | (() => void),
 }
 
-interface IDialogTree {
+export interface IDialogTree {
     dialog: IDialog[],
     responses: IResponse[],
 }
