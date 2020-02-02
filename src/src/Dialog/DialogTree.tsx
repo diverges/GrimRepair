@@ -4,7 +4,8 @@ import ResponseOptions from './ResponseOptions';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 interface IDialog {
-    speaker: string,
+    speaker?: string,
+    className?: string,
     text: string,
     fromPlayer: boolean,
 }
@@ -26,7 +27,7 @@ interface IState {
 export default class DialogTree extends React.Component<IDialogTree, IState> {
     constructor(props: IDialogTree) {
         super(props);
-        
+
         this.state = {
             currentDialog: props,
             dialogHistory: props.dialog,
@@ -37,7 +38,7 @@ export default class DialogTree extends React.Component<IDialogTree, IState> {
         return (
             <div className="chat-container">
                 <div className="chat-history">
-                    {this.state.dialogHistory.map((history, i) => 
+                    {this.state.dialogHistory.map((history, i) =>
                         <ChatBubble {...history} />
                     )}
                 </div>
@@ -50,8 +51,8 @@ export default class DialogTree extends React.Component<IDialogTree, IState> {
 
     onResponseSelection(index: number) {
         let response = this.state.currentDialog.responses[index];
-        
-        if (typeof(response.next) === 'function') {
+
+        if (typeof (response.next) === 'function') {
             response.next();
         }
         else {

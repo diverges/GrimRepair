@@ -1,5 +1,3 @@
-import { resolve } from "dns";
-
 class GameAudio {
     private audioAssets: { [id: string]: HTMLAudioElement } = {};
     private audioAssetsReady: { [id: string]: boolean } = {};
@@ -30,17 +28,12 @@ class GameAudio {
         });
     }
 
-    play(key: string, loop?: boolean): void {
+    play(key: string, loop?: boolean, volume?: number): void {
         const audio = this.audioAssets[key];
+        audio.volume = volume || 1;
         audio.loop = loop || false;
         audio.currentTime = 0;
-        audio.play().then(_ => {
-            // autoplay started
-        })
-            .catch(err => {
-                // catch dom exception
-                console.info(err)
-            })
+        audio.play()
     }
 
     stop(key: string): void {
