@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  margin: 0;
 }
 
 body {
@@ -17,4 +18,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.center {
+  margin: auto;
+}
+
+.align-middle {
+  display: table-cell;
+  vertical-align: middle;
 }
