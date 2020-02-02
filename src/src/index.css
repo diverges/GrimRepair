@@ -1,10 +1,14 @@
 html {
   height: 100%;
+  width: 100%;
   margin: 0;
 }
 
 body {
+  position: fixed;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
   margin: 0;
   background-repeat: no-repeat;
   background: linear-gradient(to bottom, #003366 70%, #336699 100%);

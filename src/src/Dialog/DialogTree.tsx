@@ -1,6 +1,6 @@
 import React from 'react';
-import Dialog from './Dialog';
 import ChatBubble from './ChatBubble';
+import ResponseOptions from './ResponseOptions';
 
 interface IResponse {
     text: string,
@@ -35,20 +35,20 @@ export default class DialogTree extends React.Component<IDialogTreeProps, IState
         
         this.state = {
             currentDialog: props.root,
-            dialogHistory: [],
+            dialogHistory: [{ ...props.root, fromPlayer: false }],
         };
     }
 
     render() {
         return (
             <div className="chat-container">
-                {this.state.dialogHistory.map(history => 
-                    <ChatBubble {...history} />
-                )}
-                <Dialog
-                    speaker={this.state.currentDialog.speaker}
-                    dialog={this.state.currentDialog.dialog}
-                    responses={this.state.currentDialog.responses.map(response => response.text)}
+                <div className="chat-history">
+                    {this.state.dialogHistory.map((history, i) => 
+                        <ChatBubble {...history} />
+                    )}
+                </div>
+                <ResponseOptions
+                    responses={this.state.currentDialog.responses.map(r => r.text)}
                     selectResponse={(i) => this.onResponseSelection(i)} />
             </div>
         )
@@ -64,8 +64,8 @@ export default class DialogTree extends React.Component<IDialogTreeProps, IState
             this.setState({
                 currentDialog: response.next,
                 dialogHistory: this.state.dialogHistory.concat(
-                    { speaker: this.state.currentDialog.speaker, dialog: this.state.currentDialog.dialog, fromPlayer: false, },
                     { speaker: this.props.playerSpeaker, dialog: response.text, fromPlayer: true },
+                    { speaker: response.next.speaker, dialog: response.next.dialog, fromPlayer: false, },
                 )
             });
         }

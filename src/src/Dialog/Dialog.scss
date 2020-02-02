@@ -16,11 +16,21 @@
     flex-direction: row-reverse;
 }
 
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
 %chat-bubble {
+    margin: 1em;
     padding-left: 1em;
     padding-right: 1em;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px grey;
+    animation: 500ms slideIn ease;
 }
 
 .chat-bubble-npc {
@@ -28,6 +38,7 @@
 
     text-align: left;
     background-color: blanchedalmond;
+    box-shadow: -10px 10px grey;
 }
 
 .chat-bubble-player {
@@ -35,11 +46,15 @@
 
     text-align: right;
     background-color: blue;
+    box-shadow: 10px 10px grey;
 }
 
 .chat-container {
-    margin: 10%;
-    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100vw;
+    height: 100vh;
 }
 
 .response-container {
@@ -50,7 +65,6 @@
 .response {
     @extend .chat-bubble-player;
 
-    margin: 1em;
     transition-property: opacity;
     transition-duration: 200ms;
     opacity: 80%;
