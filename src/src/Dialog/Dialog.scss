@@ -1,56 +1,61 @@
-.ChatBubbleContainer {
+
+%chat-bubble-container {
     display: flex;
     justify-content: flex-start;
 }
 
-.ChatBubbleContainer-Player {
+.chat-bubble-container-npc {
+    @extend %chat-bubble-container;
+
+    flex-direction: row;
+}
+
+.chat-bubble-container-player {
+    @extend %chat-bubble-container;
+
     flex-direction: row-reverse;
 }
 
-.ChatBubble {
+%chat-bubble {
     padding-left: 1em;
     padding-right: 1em;
-    text-align: left;
-    background-color: blanchedalmond;
     border-radius: 10px;
     box-shadow: 10px 10px 10px grey;
 }
 
-.ChatBubble-Player {
+.chat-bubble-npc {
+    @extend %chat-bubble;
+
+    text-align: left;
+    background-color: blanchedalmond;
+}
+
+.chat-bubble-player {
+    @extend %chat-bubble;
+
     text-align: right;
     background-color: blue;
 }
 
-.DialogBox {
+.chat-container {
     margin: 10%;
     width: auto;
 }
 
-.ResponseOptions {
+.response-container {
     display: flex;
     justify-content: center;
 }
 
-.Response {
+.response {
+    @extend .chat-bubble-player;
+
     margin: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px grey;
     transition-property: opacity;
     transition-duration: 200ms;
-    background-color: blue;
     opacity: 80%;
 }
 
-.Response:hover {
+.response:hover {
     opacity: 100%;
-}
-
-.ResponseOption:hover {
-    background-color: grey;
-}
-
-.ResponseOption::before {
-    background-color: grey;
 }

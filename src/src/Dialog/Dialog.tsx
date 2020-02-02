@@ -1,5 +1,5 @@
 import React from 'react';
-import './Dialog.css';
+import './Dialog.scss';
 import ChatBubble from './ChatBubble';
 import ResponseOptions from './ResponseOptions';
 

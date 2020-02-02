@@ -41,7 +41,7 @@ export default class DialogTree extends React.Component<IDialogTreeProps, IState
 
     render() {
         return (
-            <div className="DialogBox">
+            <div className="chat-container">
                 {this.state.dialogHistory.map(history => 
                     <ChatBubble {...history} />
                 )}

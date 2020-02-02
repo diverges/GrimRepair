@@ -1,5 +1,5 @@
 import React from 'react';
-import './Dialog.css';
+import './Dialog.scss';
 
 interface IResponseOptionsProps {
     responses: string[],
@@ -8,9 +8,9 @@ interface IResponseOptionsProps {
 
 const ResponseOptions = (props : IResponseOptionsProps) => {
     return (
-        <div className="ResponseOptions">
+        <div className="response-container">
             {props.responses.map((response, i) =>
-                <div className="Response" onClick={() => props.selectResponse(i)}>
+                <div className="response" onClick={() => props.selectResponse(i)}>
                     <p>{response}</p>
                 </div>
             )}
