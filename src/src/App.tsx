@@ -5,23 +5,46 @@ import DialogTree from './Dialog/DialogTree';
 import { AudioPlayer } from 'Audio';
 import { AudioAssets } from 'Shared';
 
+let BossMan = "BossMan";
+let Grimm = "Grimm";
+
+
 let dialogTree = {
-  speaker: "Grim Repear",
-  dialog: "Are you p-repeared?",
+  dialog: [
+    {
+      speaker: BossMan,
+      text: "Are you p-repeared?",
+      fromPlayer: false,
+    },
+  ],
   responses: [
     {
+      speaker: Grimm,
       text: "Pearfectly so.",
+      fromPlayer: true,
       next: {
-        speaker: "Grim Repear",
-        dialog: "Pearfect indeed.",
+        dialog: [
+          {
+            speaker: BossMan,
+            text: "Pearfect indeed.",
+            fromPlayer: false,
+          },
+          {
+            speaker: Grimm,
+            text: "I see you have a pearchant for puns.",
+            fromPlayer: true,
+          }
+        ],
         responses: [],
       }
     },
     {
+      speaker: Grimm,
       text: "I am not prepeared.",
+      fromPlayer: true,
       next: () => alert("Game over."),
     }
-  ],
+  ]
 }
 
 const loadingStyle: React.CSSProperties = {
@@ -63,7 +86,7 @@ class App extends React.PureComponent<{}, IAppState> {
     return (
       <div ref={this.rootRef} className="App">
         {this.state.isLoading && <div style={loadingStyle}><span className='align-middle'>Loading</span></div>}
-        <DialogTree root={dialogTree} playerSpeaker="Player" />
+        <DialogTree {...dialogTree} />
       </div>
     );
   }

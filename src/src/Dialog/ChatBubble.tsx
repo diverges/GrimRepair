@@ -3,7 +3,7 @@ import './Dialog.scss';
 
 interface IDialogProps {
     speaker: string,
-    dialog: string,
+    text: string,
     fromPlayer: boolean,
 }
 
@@ -15,7 +15,7 @@ const ChatBubble = (props : IDialogProps) => {
                     <h2>{props.speaker}</h2>
                 </div>
                 <div>
-                    <p>{props.dialog}</p>
+                    <p>{props.text}</p>
                 </div>
             </div>
         </div>

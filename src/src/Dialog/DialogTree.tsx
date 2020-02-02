@@ -1,41 +1,35 @@
 import React from 'react';
 import ChatBubble from './ChatBubble';
 import ResponseOptions from './ResponseOptions';
+import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
-interface IResponse {
+interface IDialog {
+    speaker: string,
     text: string,
+    fromPlayer: boolean,
+}
+
+interface IResponse extends IDialog {
     next: IDialogTree | (() => void),
 }
 
 interface IDialogTree {
-    speaker: string,
-    dialog: string,
+    dialog: IDialog[],
     responses: IResponse[],
-}
-
-interface IHistoricDialog {
-    speaker: string,
-    dialog: string,
-    fromPlayer: boolean,
-}
-
-interface IDialogTreeProps {
-    playerSpeaker: string,
-    root: IDialogTree,
 }
 
 interface IState {
     currentDialog: IDialogTree,
-    dialogHistory: IHistoricDialog[],
+    dialogHistory: IDialog[],
 }
 
-export default class DialogTree extends React.Component<IDialogTreeProps, IState> {
-    constructor(props: IDialogTreeProps) {
+export default class DialogTree extends React.Component<IDialogTree, IState> {
+    constructor(props: IDialogTree) {
         super(props);
         
         this.state = {
-            currentDialog: props.root,
-            dialogHistory: [{ ...props.root, fromPlayer: false }],
+            currentDialog: props,
+            dialogHistory: props.dialog,
         };
     }
 
@@ -63,10 +57,9 @@ export default class DialogTree extends React.Component<IDialogTreeProps, IState
         else {
             this.setState({
                 currentDialog: response.next,
-                dialogHistory: this.state.dialogHistory.concat(
-                    { speaker: this.props.playerSpeaker, dialog: response.text, fromPlayer: true },
-                    { speaker: response.next.speaker, dialog: response.next.dialog, fromPlayer: false, },
-                )
+                dialogHistory: this.state.dialogHistory
+                    .concat({ speaker: response.speaker, text: response.text, fromPlayer: true })
+                    .concat(response.next.dialog),
             });
         }
     }
