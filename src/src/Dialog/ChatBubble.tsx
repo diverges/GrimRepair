@@ -7,10 +7,16 @@ interface IDialogProps {
     className?: string,
     text: string,
     fromPlayer: boolean,
+    onRender?(): void;
 }
 
 const ChatBubble = (props: IDialogProps) => {
     AudioPlayer.play('PHONE_CORD_2');
+
+    if (props.onRender) {
+        props.onRender();
+    }
+
     return (
         <div className={props.fromPlayer ? 'chat-bubble-container-player' : 'chat-bubble-container-npc'}>
             <div className={props.fromPlayer ? 'chat-bubble-player' : 'chat-bubble-npc'}>

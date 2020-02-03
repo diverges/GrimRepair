@@ -7,7 +7,8 @@ export interface IDialog {
     className?: string,
     text: string,
     fromPlayer: boolean,
-    delay?: number
+    delay?: number,
+    onRender?(): void;
 }
 
 export interface IResponse extends IDialog {
@@ -62,7 +63,13 @@ export default class DialogTree extends React.Component<IDialogTree, IState> {
         else {
             this.setState({
                 currentResponses: [],
-                dialogHistory: this.state.dialogHistory.concat({ speaker: response.speaker, text: response.text, fromPlayer: true })
+                dialogHistory: this.state.dialogHistory.concat({
+                    speaker: response.speaker,
+                    text: response.text,
+                    fromPlayer: true,
+                    className: response.className,
+                    onRender: response.onRender
+                })
             });
 
 
