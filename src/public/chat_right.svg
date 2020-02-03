@@ -7,7 +7,7 @@
    xmlns="http://www.w3.org/2000/svg"
    id="svg4596"
    version="1.1"
-   viewBox="0 0 2.38125 2.38125"
+   viewBox="0 0 9 9"
    height="9"
    width="9">
   <defs
@@ -20,20 +20,18 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="translate(0,-294.61873)"
-     id="layer1">
+  <g id="layer1" transform="scale(-1 1) translate(-9 0)">
     <path
-       id="path4602"
-       d="m 1.5875,295.1479 0.2645833,0.26458 v 0.79375 l 0.2645834,0.26458 -0.5291667,0 H 0.79375 L 0.52916667,296.20623 H 1.5875 Z"
-       style="fill:#2c4b39;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-width:0;fill:#2c4b39"
+       d="M3 2C3 2 2 3 2 3C2 3 2 6 2 6C2 6 1 7 1 7C1 7 3 7 3 7C3 7 6 7 6 7C6 7 7 6 7 6C7 6 3 6 3 6C3 6 3 2 3 2"
+       id="path4602" />
     <path
-       id="path5147"
-       d="M 0.52916666,295.1479 H 1.5875 v 1.05833 H 0.52916666 Z"
-       style="fill:#4dde8a;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+       style="stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-width:0;fill:#4dde8a"
+       d="M3 2C3 2 7 2 7 2C7 2 7 6 7 6C7 6 3 6 3 6C3 6 3 2 3 2"
+       id="path5147" />
   </g>
 </svg>
