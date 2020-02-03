@@ -11,7 +11,7 @@ body {
   overflow: hidden;
   margin: 0;
   background-repeat: no-repeat;
-  background: linear-gradient(to bottom, #003366 70%, #336699 100%);
+  background: linear-gradient(to bottom, #2e2020 65%, #805959 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -33,8 +33,13 @@ div, p {
   text-shadow: 2px 3px #FF0000;
 }
 
+.text-button {
+  color: #ebd7d7;
+  font-size: '28px';
+}
+
 .text-button:hover {
-  text-shadow: 2px 3px #FF0000;
+  text-shadow: 1px 2px #b39030;
 }
 
 .center {

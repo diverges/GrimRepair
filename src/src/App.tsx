@@ -1,60 +1,22 @@
 import React from 'react';
 import './App.css';
 
-import DialogTree from './Dialog/DialogTree';
 import { AudioPlayer } from 'Audio';
 import { AudioAssets } from 'Shared';
 import { PrologueScene } from 'Scenes';
 
-let BossMan = "BossMan";
-let Grimm = "Grimm";
-
-
-let dialogTree = {
-  dialog: [
-    {
-      speaker: BossMan,
-      text: "Are you p-repeared?",
-      fromPlayer: false,
-    },
-  ],
-  responses: [
-    {
-      speaker: Grimm,
-      text: "Pearfectly so.",
-      fromPlayer: true,
-      next: {
-        dialog: [
-          {
-            speaker: BossMan,
-            text: "Pearfect indeed.",
-            fromPlayer: false,
-          },
-          {
-            speaker: Grimm,
-            text: "I see you have a pearchant for puns.",
-            fromPlayer: true,
-          }
-        ],
-        responses: [],
-      }
-    },
-    {
-      speaker: Grimm,
-      text: "I am not prepeared.",
-      fromPlayer: true,
-      next: () => alert("Game over."),
-    }
-  ]
-}
+import title from 'assets/title.png';
+import bg from 'assets/bg.png';
 
 const loadingStyle: React.CSSProperties = {
+  backgroundImage: `url(${bg})`,
+  backgroundRepeat: 'repeat',
+  backgroundSize: '400px',
   position: 'fixed',
   top: '0',
   display: 'table',
   zIndex: 9999,
   color: 'white',
-  backgroundColor: 'black',
   fontSize: '20px',
   fontWeight: 'bold',
   height: '100%',
@@ -109,8 +71,11 @@ class App extends React.PureComponent<{}, IAppState> {
         return (<div style={loadingStyle}><span className='align-middle'>End.</span></div>);
       case SceneState.START:
         return (<div style={loadingStyle}>
-          <h1 className="shadow-red">Grim Repair</h1><br />
-          <div className="text-button" onClick={() => this.setState({
+          <img src={title} className="center" style={{
+            maxWidth: '350px',
+            padding: '20px'
+          }} />
+          <div className="text-button" style={{ fontSize: '48px' }} onClick={() => this.setState({
             sceneState: SceneState.PROLOGUE
           })}>Start</div></div>);
       default: return <PrologueScene onSceneEnd={() => this.setState({
