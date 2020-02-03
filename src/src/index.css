@@ -24,6 +24,19 @@ code {
     monospace;
 }
 
+div, p {
+  margin: 0;
+  padding: 0;
+}
+
+.shadow-red {
+  text-shadow: 2px 3px #FF0000;
+}
+
+.text-button:hover {
+  text-shadow: 2px 3px #FF0000;
+}
+
 .center {
   margin: auto;
 }

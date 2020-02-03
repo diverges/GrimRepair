@@ -93,7 +93,8 @@ class App extends React.PureComponent<{}, IAppState> {
   render() {
     return (
       <div ref={this.rootRef} className="App">
-        {this.state.isLoading && <div style={loadingStyle}><span className='align-middle'>Loading</span></div>}
+        {this.state.isLoading && <div style={loadingStyle}>
+          <span className='align-middle'>Loading</span></div>}
         {!this.state.isLoading && (
           this.getCurrentScene()
         )}
@@ -107,9 +108,11 @@ class App extends React.PureComponent<{}, IAppState> {
       case SceneState.END:
         return (<div style={loadingStyle}><span className='align-middle'>End.</span></div>);
       case SceneState.START:
-        return (<div style={loadingStyle}><span className='align-middle' onClick={() => this.setState({
-          sceneState: SceneState.PROLOGUE
-        })}>Start</span></div>);
+        return (<div style={loadingStyle}>
+          <h1 className="shadow-red">Grim Repair</h1><br />
+          <div className="text-button" onClick={() => this.setState({
+            sceneState: SceneState.PROLOGUE
+          })}>Start</div></div>);
       default: return <PrologueScene onSceneEnd={() => this.setState({
         sceneState: SceneState.END
       })} />

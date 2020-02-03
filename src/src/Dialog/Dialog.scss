@@ -27,13 +27,14 @@
 }
 
 %chat-bubble {
-    margin: 1em;
+    margin: 0;
     padding-left: 1em;
     padding-right: 1em;
+    padding-bottom: 0.33em;
     animation: 500ms slideIn ease;
-    
+
     overflow: hidden;
-    border-width: 2em;
+    border-width: 1.33em;
     border-style: solid;
     border-image-slice: 3 fill;
     border-image-repeat: stretch;
@@ -58,7 +59,7 @@
     flex-direction: column;
     justify-content: flex-end;
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
 }
 
 .response-container {
@@ -71,9 +72,9 @@
 
     transition-property: opacity;
     transition-duration: 200ms;
-    opacity: 80%;
+    opacity: 0.8;
 }
 
 .response:hover {
-    opacity: 100%;
+    opacity: 1;
 }

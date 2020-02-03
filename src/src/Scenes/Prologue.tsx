@@ -20,16 +20,19 @@ const bossNote: IDialogTree = {
     },
     {
         text: "Thousands.",
+        delay: 1000,
         fromPlayer: false,
         className: 'italic'
     },
     {
         text: "of.",
+        delay: 1000,
         fromPlayer: false,
         className: 'italic'
     },
     {
         text: "years.",
+        delay: 1000,
         fromPlayer: false,
         className: 'italic'
     },
@@ -94,9 +97,6 @@ const bossNote: IDialogTree = {
                 text: "So this human was supposed to die anyways? ",
                 fromPlayer: true,
             }, {
-                text: "So this human was supposed to die anyways? ",
-                fromPlayer: true,
-            }, {
                 text: "Sweet! ",
                 fromPlayer: true,
             }, {
@@ -120,7 +120,7 @@ const bossNote: IDialogTree = {
             }],
             responses: [
                 {
-                    text: "Humans are so hard to tell apart.",
+                    text: "Time to get to work.",
                     fromPlayer: true,
                     next: sceneEnd
                 }
@@ -153,10 +153,6 @@ const innerThoughtTree: IDialogTree = {
     },
     {
         text: "kill and reap the wrong soul.",
-        fromPlayer: true,
-    },
-    {
-        text: "Attached to the updated mission report is a note from my boss:",
         fromPlayer: true,
     }],
     responses: [{
@@ -271,9 +267,13 @@ export class PrologueScene extends React.Component<SceneProps<{}, {}>, PrologueS
         sceneEnd.responses = [{
             text: "...",
             fromPlayer: true,
-            next: () => { this.props.onSceneEnd(); }
+            next: () => {
+                AudioPlayer.play('DOOR_CLOSE');
+                setTimeout(this.props.onSceneEnd, 2000);
+            }
         }];
         AudioPlayer.play('LIFE_LIKE_THUNDERSTORM', true, 0.4);
+        AudioPlayer.play('DOOR_OPEN');
     }
 
     render() {
