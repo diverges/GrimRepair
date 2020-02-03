@@ -50,7 +50,7 @@
 .chat-bubble-player {
     @extend %chat-bubble;
 
-    text-align: right;
+    text-align: left;
     border-image-source: url('/chat_right.svg');
 }
 

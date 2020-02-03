@@ -1,7 +1,6 @@
 import React from 'react';
 import ChatBubble from './ChatBubble';
 import ResponseOptions from './ResponseOptions';
-import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 export interface IDialog {
     speaker?: string,
@@ -11,7 +10,7 @@ export interface IDialog {
     delay?: number
 }
 
-interface IResponse extends IDialog {
+export interface IResponse extends IDialog {
     next: IDialogTree | (() => void),
 }
 
@@ -48,7 +47,7 @@ export default class DialogTree extends React.Component<IDialogTree, IState> {
                     )}
                 </div>
                 <ResponseOptions
-                    responses={this.state.currentResponses.map(r => r.text)}
+                    responses={this.state.currentResponses}
                     selectResponse={(i) => this.onResponseSelection(i)} />
             </div>
         )

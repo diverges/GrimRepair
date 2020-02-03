@@ -58,11 +58,16 @@ const bossNote: IDialogTree = {
     {
         text: "Lucked out?",
         fromPlayer: true,
+    },
+    {
+        text: "ALERT: MISSION UPDATE",
+        fromPlayer: false,
+        className: "bold"
     }],
     responses: [{
-        text: "ALERT: MISSION UPDATE",
+        text: "Read.",
         fromPlayer: true,
-        className: "bold",
+        className: "italic",
         next: {
             dialog: [{
                 text: "Reaper Mission Backlog:",
@@ -120,7 +125,8 @@ const bossNote: IDialogTree = {
             }],
             responses: [
                 {
-                    text: "Time to get to work.",
+                    text: "Back to work.",
+                    className: "italic",
                     fromPlayer: true,
                     next: sceneEnd
                 }
@@ -154,9 +160,14 @@ const innerThoughtTree: IDialogTree = {
     {
         text: "kill and reap the wrong soul.",
         fromPlayer: true,
+    },
+    {
+        text: "Attached to the updated mission report is a note from my boss:",
+        fromPlayer: true,
     }],
     responses: [{
-        text: "Attached to the updated mission report is a note from my boss:",
+        text: "Read",
+        className: "italic",
         fromPlayer: true,
         next: bossNote
     }]
@@ -265,9 +276,11 @@ export class PrologueScene extends React.Component<SceneProps<{}, {}>, PrologueS
     componentDidMount() {
         this.props.onSceneStart && this.props.onSceneStart();
         sceneEnd.responses = [{
-            text: "...",
+            text: "Leave",
+            className: "italic",
             fromPlayer: true,
             next: () => {
+                AudioPlayer.stopAll();
                 AudioPlayer.play('DOOR_CLOSE');
                 setTimeout(this.props.onSceneEnd, 2000);
             }
