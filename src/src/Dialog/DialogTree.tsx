@@ -8,6 +8,7 @@ export interface IDialog {
     className?: string,
     text: string,
     fromPlayer: boolean,
+    delay?: number
 }
 
 interface IResponse extends IDialog {
@@ -71,12 +72,12 @@ export default class DialogTree extends React.Component<IDialogTree, IState> {
     }
 
     showAllDialogThenResponses(dialog: IDialog[], responses: IResponse[]) {
-        const showAllDialogWithDelays = dialog.reduceRight((promise, dialog) => promise.then(() => {
+        const showAllDialogWithDelays = dialog.reduce((promise, dialog) => promise.then(() => {
             this.setState({
                 dialogHistory: this.state.dialogHistory.concat(dialog),
             });
 
-            return this.delay(messageDelay);
+            return this.delay(dialog.delay || messageDelay);
         }), this.delay(messageDelay))
 
         showAllDialogWithDelays.then(() => {

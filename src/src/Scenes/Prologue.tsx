@@ -2,6 +2,7 @@ import React from 'react';
 import DialogTree from 'Dialog/DialogTree';
 import { SceneProps } from './SceneProps';
 import { IDialogTree } from '../Dialog/DialogTree';
+import { AudioPlayer } from '../Audio/GameAudio';
 
 const sceneEnd: IDialogTree = {
     dialog: [],
@@ -223,6 +224,7 @@ const rootTree: IDialogTree = {
         {
             text: "ALERT: MISSION UPDATE",
             className: 'bold',
+            delay: 2000,
             fromPlayer: false,
         },
         {
@@ -271,6 +273,7 @@ export class PrologueScene extends React.Component<SceneProps<{}, {}>, PrologueS
             fromPlayer: true,
             next: () => { this.props.onSceneEnd(); }
         }];
+        AudioPlayer.play('LIFE_LIKE_THUNDERSTORM', true, 0.4);
     }
 
     render() {
