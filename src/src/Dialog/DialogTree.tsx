@@ -20,18 +20,22 @@ export interface IDialogTree {
 }
 
 interface IState {
-    currentDialog: IDialogTree,
     dialogHistory: IDialog[],
+    currentResponses: IResponse[]
 }
+
+const messageDelay = 2000;
 
 export default class DialogTree extends React.Component<IDialogTree, IState> {
     constructor(props: IDialogTree) {
         super(props);
 
         this.state = {
-            currentDialog: props,
-            dialogHistory: props.dialog,
+            dialogHistory: [],
+            currentResponses: [],
         };
+
+        this.showAllDialogThenResponses(props.dialog, props.responses);
     }
 
     render() {
@@ -43,25 +47,46 @@ export default class DialogTree extends React.Component<IDialogTree, IState> {
                     )}
                 </div>
                 <ResponseOptions
-                    responses={this.state.currentDialog.responses.map(r => r.text)}
+                    responses={this.state.currentResponses.map(r => r.text)}
                     selectResponse={(i) => this.onResponseSelection(i)} />
             </div>
         )
     }
 
     onResponseSelection(index: number) {
-        let response = this.state.currentDialog.responses[index];
+        let response = this.state.currentResponses[index];
 
         if (typeof (response.next) === 'function') {
             response.next();
         }
         else {
             this.setState({
-                currentDialog: response.next,
-                dialogHistory: this.state.dialogHistory
-                    .concat({ speaker: response.speaker, text: response.text, fromPlayer: true })
-                    .concat(response.next.dialog),
+                currentResponses: [],
+                dialogHistory: this.state.dialogHistory.concat({ speaker: response.speaker, text: response.text, fromPlayer: true })
             });
+
+
+            this.showAllDialogThenResponses(response.next.dialog, response.next.responses);
         }
+    }
+
+    showAllDialogThenResponses(dialog: IDialog[], responses: IResponse[]) {
+        const showAllDialogWithDelays = dialog.reduceRight((promise, dialog) => promise.then(() => {
+            this.setState({
+                dialogHistory: this.state.dialogHistory.concat(dialog),
+            });
+
+            return this.delay(messageDelay);
+        }), this.delay(messageDelay))
+
+        showAllDialogWithDelays.then(() => {
+            this.setState({
+                currentResponses: responses,
+            });
+        });
+    }
+
+    delay(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
